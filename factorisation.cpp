@@ -1,41 +1,37 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 typedef long long ll;
 
 using namespace std;
 
-int main()
+vector <ll> factorisation(ll num)
 {
-    ll num;
-    cin >> num;
     if (num == 1)
     {
-        cout << 1;
-        return 0;
+        vector <ll> res = {1};
+        return res;
     }
     ll factor = 2;
-    string answer = "";
+    vector <ll> answer;
     while (num != 1)
     {
         if (factor > sqrt(num))
         {
-            answer += "*"+to_string(num);
+            answer.push_back(num);
             num /= num;
         }
         else
         {
             if (num % factor == 0)
             {
-                answer += "*"+to_string(factor);
+                answer.push_back(factor);
                 num /= factor;
             }
             else
                 factor++;
         }
     }
-    answer.erase(0, 1);
-    cout << answer;
-
-    return 0;
+    return answer;
 }
